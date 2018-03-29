@@ -1,17 +1,14 @@
 puts "Введите a"
-a = gets.chomp
-a = a.to_i
+a = gets.chomp.to_f
 
 puts "Введите b"
-b = gets.chomp
-b = b.to_i
+b = gets.chomp.to_f
 
 puts "Введите c"
-c = gets.chomp
-c = c.to_i
+c = gets.chomp.to_f
 
 discr = b**2 - 4 * a * c
-Discr = discr.to_f
+Discr = discr.to_f // Это что за херобора?
 
 if Discr < 0
 	puts "Дискриминант равен #{Discr}. Корней нет."

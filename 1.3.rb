@@ -1,50 +1,31 @@
-puts "Введите длину первой стороны"
-side1 = gets.chomp
-side1 = side1.to_i
 
-puts "Введите длину второй стороны"
-side2 = gets.chomp
-side2 = side2.to_i
+puts 'Program: Right triangle'
 
-puts "Введите длину третьей стороны"
-side3 = gets.chomp
-side3 = side3.to_i
+print 'Input first side: '
+first_side = gets.chomp.to_f
 
-if side1 == side2 || side2 == side3 || side3 == side1
-	ravbed = "Так же треугольник является равнобедренным."
-else
-	ravbed = 0
+print 'Input second side: '
+second_side = gets.chomp.to_f
+
+print 'Input third side: '
+third_side = gets.chomp.to_f
+
+# Create array, insert and order values
+sides = [ first_side, second_side, third_side ]
+puts "Source sides info: #{sides}"
+sides.sort_by! { |s| -s}
+puts "Sides after sort: #{sides}"
+
+unique_sides = sides.uniq.to_ary
+
+if unique_sides.length == 1 # Равносторонний, сообщаем о свойствах
+  puts 'The triangle is equilateral'
+else # иначе проверяем на прямоугольность
+  if (sides.first ** 2) == (sides[1] ** 2 + sides[2] ** 2)
+    puts 'This is right triangle'
+  else
+    puts 'This is just a common triangle'
+  end
 end
 
-if side1 == side2 && side2 == side3 && side3 == side1
-	ravstr = "Так же треугольник яявляется равносторонним."
-else
-	ravstr = 0
-end
-
-if side1 > side2 && side1 > side3
-	gip = side1
-elsif side2 > side1 && side2 > side3
-	gip = side2
-elsif side3 > side1 && side3 > side2
-	gip = side3
-end
-
-sum = side1**2 + side2**2 + side3**2
-sum -= gip**2
-
-if sum == gip**2	
-	tup = "Треугольник является прямоугольным."
-else
-	tup = "Треугольник не является прямоугольным."
-end
-
-if ravstr != 0 && ravbed != 0
-	puts "#{tup} #{ravstr} #{ravbed}"
-elsif ravstr != 0 && ravbed == 0
-	puts "#{tup} #{ravstr}"
-elsif ravstr == 0 && ravbed != 0
-	puts "#{tup} #{ravbed}"
-elsif ravstr == 0 && ravbed == 0
-	puts "#{tup}"
-end
+print ', and the isosceles' if unique_sides.length == 2
